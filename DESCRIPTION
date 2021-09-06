@@ -1,0 +1,11 @@
+Package: TESD
+Type: Package
+Title: Estimate the pairwise proportions of low, medium and high values of two continously distributed variables, known as Trinomial Effect Size Display (TESD)
+Version: 0.1.0
+Author: René Mõttus
+Maintainer: René Mõttus <rene.mottus@ed.ac.uk>
+Description: This procedure allows to estimate the extent to which correlations (e.g., population-level trends) apply to individual observations (e.g., people). 
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 7.1.1

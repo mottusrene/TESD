@@ -1,0 +1,5 @@
+exportPattern("^[[:alpha:]]+")
+importFrom("graphics", "lines", "text")
+importFrom("stats", "quantile")
+importFrom("stats", "cor", "rnorm")
+importFrom("stats", "rbeta", "runif")
