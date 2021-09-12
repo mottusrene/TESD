@@ -42,19 +42,22 @@ TESD <- function(x,y, plot=TRUE, Xlab="X",Ylab="Y", plot.expected.TESD=FALSE){
     text((xq[1] + min(x))/2, mean(y), percents[2,1], cex=1)
     text((xq[1] + min(x))/2, (yq[1] + min(y))/2, percents[3,1], cex=1)
 
-    text(mean(x), (yq[2] + max(y))/2, percents[1,2], cex=1)
-    text(mean(x), mean(y), percents[2,2], cex=1)
-    text(mean(x), (yq[1] + min(y))/2, percents[3,2], cex=1)
+    text(median(x), (yq[2] + max(y))/2, percents[1,2], cex=1)
+    text(median(x), mean(y), percents[2,2], cex=1)
+    text(median(x), (yq[1] + min(y))/2, percents[3,2], cex=1)
 
     text((xq[2] + max(x))/2, (yq[2] + max(y))/2, percents[1,3], cex=1)
     text((xq[2] + max(x))/2, mean(y), percents[2,3], cex=1)
     text((xq[2] + max(x))/2, (yq[1] + min(y))/2, percents[3,3], cex=1)
 
-  }
+    xstand = (x-min(x))/(max(x)-min(x))
+    xq1 <- quantile(xstand, c(1/3, 2/3))
+    mtext(paste("Proportions of" , Ylab, "if", Xlab, "is:"), side=3, line=3, adj=0)
+    mtext('low', side=3, line=1, adj=(xq1[1])/2)
+    mtext('medium', side=3, line=1, adj=median(xstand))
+    mtext('high', side=3, line=1, adj=(xq1[2] + 1)/2 )
 
-  warning(c("\n\n",
-            paste("Interpret TESD from supplied data as:
-          Proportions of", Ylab, "if", Xlab," is either low, medium or high, respectively"), "\n"))
+  }
 
   if(min(rowSums(crosstabs)) < .95 | max(rowSums(crosstabs)) > 1.05)
     warning("\n\nBut TESD groups have unexpected sizes (see univariate and multivariate proportions), so be careful!
@@ -64,11 +67,11 @@ TESD <- function(x,y, plot=TRUE, Xlab="X",Ylab="Y", plot.expected.TESD=FALSE){
             You can also switch it on by plot.expected.TESD = TRUE.\n")
 
   list(
-    TESD.table.from.supplied.data = crosstabs,
-    expected.TESD = tcrosstabs,
-    univariate.x.proportions = prop.table(table(tabs$x)),
-    univariate.y.propoprtions = prop.table(table(tabs$y)),
+    TESD.table.from.supplied.data = round(crosstabs,4),
+    expected.TESD = round(tcrosstabs,4),
+    univariate.x.proportions = round(prop.table(table(tabs$x)),4),
+    univariate.y.propoprtions = round(prop.table(table(tabs$y)),4),
     cross.tabulations = table(tabs),
-    multivariate.y.proportions = rowSums(crosstabs)
+    multivariate.y.proportions = round(rowSums(crosstabs),4)
   )
 }

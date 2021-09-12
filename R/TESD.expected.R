@@ -41,14 +41,23 @@ TESD.expected <- function(r, distribution = c("normal", "uniform", "skewed"), n 
     text((xq[1] + min(x))/2, mean(y), percents[2,1], cex=1)
     text((xq[1] + min(x))/2, (yq[1] + min(y))/2, percents[3,1], cex=1)
 
-    text(mean(x), (yq[2] + max(y))/2, percents[1,2], cex=1)
-    text(mean(x), mean(y), percents[2,2], cex=1)
-    text(mean(x), (yq[1] + min(y))/2, percents[3,2], cex=1)
+    text(median(x), (yq[2] + max(y))/2, percents[1,2], cex=1)
+    text(median(x), mean(y), percents[2,2], cex=1)
+    text(median(x), (yq[1] + min(y))/2, percents[3,2], cex=1)
 
     text((xq[2] + max(x))/2, (yq[2] + max(y))/2, percents[1,3], cex=1)
     text((xq[2] + max(x))/2, mean(y), percents[2,3], cex=1)
     text((xq[2] + max(x))/2, (yq[1] + min(y))/2, percents[3,3], cex=1)
+
+    xstand = (x-min(x))/(max(x)-min(x))
+    xq1 <- quantile(xstand, c(1/3, 2/3))
+    mtext("Proportions of Y if X is:", side=3, line=3, adj=0)
+    mtext('low', side=3, line=1, adj=(xq1[1])/2)
+    mtext('medium', side=3, line=1, adj=median(xstand))
+    mtext('high', side=3, line=1, adj=(xq1[2] + 1)/2 )
+
   }
-  crosstabs
+
+  round(crosstabs,4)
 
 }
