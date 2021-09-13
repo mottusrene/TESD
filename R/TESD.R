@@ -52,10 +52,18 @@ TESD <- function(x,y, plot=TRUE, Xlab="X",Ylab="Y", plot.expected.TESD=FALSE){
 
     xstand = (x-min(x))/(max(x)-min(x))
     xq1 <- quantile(xstand, c(1/3, 2/3))
+    ystand = (y-min(y))/(max(y)-min(y))
+    yq1 <- quantile(ystand, c(1/3, 2/3))
+    
     mtext(paste("Proportions of" , Ylab, "if", Xlab, "is:"), side=3, line=3, adj=0)
+    
     mtext('low', side=3, line=1, adj=(xq1[1])/2)
     mtext('medium', side=3, line=1, adj=median(xstand))
     mtext('high', side=3, line=1, adj=(xq1[2] + 1)/2 )
+    
+    mtext('low', side=4, line=1, adj=(yq1[1])/2)
+    mtext('medium', side=4, line=1, adj=median(ystand))
+    mtext('high', side=4, line=1, adj=(yq1[2] + 1)/2 )
 
   }
 

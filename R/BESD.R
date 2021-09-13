@@ -42,10 +42,16 @@ BESD <- function(x,y, plot=TRUE, Xlab="X",Ylab="Y", plot.expected.BESD=FALSE){
     text((median(x) + max(x))/2, (median(y) + min(y))/2, percents[2,2], cex = 1)
 
     xstand = (x-min(x))/(max(x)-min(x))
+    ystand = (y-min(y))/(max(y)-min(y))
+    
     mtext(paste("Proportions of" , Ylab, "if", Xlab, "is:"), side=3, line=3, adj=0)
+    
     mtext('low', side=3, line=1, adj=median(xstand)/2)
     mtext('high', side=3, line=1, adj=(median(xstand)+1)/2)
-
+    
+    mtext('low', side=4, line=1, adj=median(ystand)/2)
+    mtext('high', side=4, line=1, adj=(median(ystand)+1)/2)
+    
   }
 
   warning(c("\n\n",
