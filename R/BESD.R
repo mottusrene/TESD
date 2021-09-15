@@ -43,15 +43,17 @@ BESD <- function(x,y, plot=TRUE, Xlab="X",Ylab="Y", plot.expected.BESD=FALSE){
 
     xstand = (x-min(x))/(max(x)-min(x))
     ystand = (y-min(y))/(max(y)-min(y))
-    
+
     mtext(paste("Proportions of" , Ylab, "if", Xlab, "is:"), side=3, line=3, adj=0)
-    
+
     mtext('low', side=3, line=1, adj=median(xstand)/2)
     mtext('high', side=3, line=1, adj=(median(xstand)+1)/2)
-    
+
     mtext('low', side=4, line=1, adj=median(ystand)/2)
     mtext('high', side=4, line=1, adj=(median(ystand)+1)/2)
-    
+
+    mtext(paste("Correlation =", round(cor(x,y),2)), side = 1, line=4, adj=0)
+
   }
 
   warning(c("\n\n",
