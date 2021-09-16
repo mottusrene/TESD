@@ -25,7 +25,7 @@ TESD <- function(x,y, plot=TRUE, Xlab="X",Ylab="Y", plot.expected.TESD=FALSE){
   if(plot){
     color <- as.factor(apply(tabs, 1, paste, collapse=""))
 
-    plot(x,y, cex=.5, ,
+    plot(x,y, cex=.5, pch=16,
          xlab=Xlab, ylab=Ylab,
          col = c("olivedrab1","orange", "lightblue", "green", "red", "dodgerblue2", "darkgreen","brown","midnightblue")[color] )
 
@@ -38,17 +38,17 @@ TESD <- function(x,y, plot=TRUE, Xlab="X",Ylab="Y", plot.expected.TESD=FALSE){
     lines(c(min(x) - abs(min(x)),max(x) + abs(max(x))), rep(yq[1],2), col="grey50")
     lines(c(min(x) - abs(min(x)),max(x) + abs(max(x))), rep(yq[2],2), col="grey50")
 
-    text((xq[1] + min(x))/2, (yq[2] + max(y))/2, percents[1,1], cex=1)
-    text((xq[1] + min(x))/2, mean(y), percents[2,1], cex=1)
-    text((xq[1] + min(x))/2, (yq[1] + min(y))/2, percents[3,1], cex=1)
+    text((xq[1] + min(x))/2, (yq[2] + max(y))/2, percents[1,1], cex=1, col = "blue")
+    text((xq[1] + min(x))/2, mean(y), percents[2,1], cex=1, col = "blue")
+    text((xq[1] + min(x))/2, (yq[1] + min(y))/2, percents[3,1], cex=1, col = "blue")
 
-    text(median(x), (yq[2] + max(y))/2, percents[1,2], cex=1)
-    text(median(x), mean(y), percents[2,2], cex=1)
-    text(median(x), (yq[1] + min(y))/2, percents[3,2], cex=1)
+    text(median(x), (yq[2] + max(y))/2, percents[1,2], cex=1, col = "magenta")
+    text(median(x), mean(y), percents[2,2], cex=1, col = "magenta")
+    text(median(x), (yq[1] + min(y))/2, percents[3,2], cex=1, col = "magenta")
 
-    text((xq[2] + max(x))/2, (yq[2] + max(y))/2, percents[1,3], cex=1)
-    text((xq[2] + max(x))/2, mean(y), percents[2,3], cex=1)
-    text((xq[2] + max(x))/2, (yq[1] + min(y))/2, percents[3,3], cex=1)
+    text((xq[2] + max(x))/2, (yq[2] + max(y))/2, percents[1,3], cex=1, col = "red")
+    text((xq[2] + max(x))/2, mean(y), percents[2,3], cex=1, col="red")
+    text((xq[2] + max(x))/2, (yq[1] + min(y))/2, percents[3,3], cex=1, col="red")
 
     xstand = (x-min(x))/(max(x)-min(x))
     xq1 <- quantile(xstand, c(1/3, 2/3))
@@ -57,13 +57,13 @@ TESD <- function(x,y, plot=TRUE, Xlab="X",Ylab="Y", plot.expected.TESD=FALSE){
 
     mtext(paste("Proportions of" , Ylab, "if", Xlab, "is:"), side=3, line=3, adj=0)
 
-    mtext('low', side=3, line=1, adj=(xq1[1])/2)
-    mtext('medium', side=3, line=1, adj=median(xstand))
-    mtext('high', side=3, line=1, adj=(xq1[2] + 1)/2 )
+    mtext('low', side=3, line=1, adj=(xq1[1])/2, col="blue")
+    mtext('medium', side=3, line=1, adj=median(xstand), col="magenta")
+    mtext('high', side=3, line=1, adj=(xq1[2] + 1)/2, col="red")
 
     mtext('low', side=4, line=1, adj=(yq1[1])/2)
     mtext('medium', side=4, line=1, adj=median(ystand))
-    mtext('high', side=4, line=1, adj=(yq1[2] + 1)/2 )
+    mtext('high', side=4, line=1, adj=(yq1[2] + 1)/2)
 
     mtext(paste("Correlation =", round(cor(x,y),2)), side = 1, line=4, adj=0)
 
